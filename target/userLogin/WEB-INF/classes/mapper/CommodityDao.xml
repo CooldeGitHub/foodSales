@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjsru.mapper.CommodityDao">
+	<select id="selectAllCommodity" resultType="Commodity">
+		select * from commodity
+	</select>
+
+	<insert id="insertCommodity" parameterType="Commodity">
+		insert into commodity (cid,cname,price,ca_id,da_id,c_count)
+		values
+		(#{cid},#{cname},#{price},#{ca_id},#{da_id},#{c_count})
+	</insert>
+
+	<delete id="deleteCommodity" parameterType="int">
+		delete from commodity where cid= #{cid}
+	</delete>
+
+	<update id="updateCommodity" parameterType="Commodity">
+		update commodity set
+		cid=#{cid},cname=#{cname},price=#{price},ca_id=#{ca_id},da_id=#{da_id},c_count=#{c_count}
+		where cid=#{cid}
+	</update>
+
+	<select id="selectByCname" parameterType="String"
+		resultMap="cResultMap">
+		select * from commodity c,category ca
+		where c.ca_id=ca.ca_id
+		and c.cname=#{cname}
+	</select>
+
+	<select id="selectByCid" parameterType="int"
+		resultMap="cResultMap">
+		select * from commodity c
+		where cid=#{cid}
+	</select>
+
+	<resultMap type="com.zjsru.bean.Commodity" id="cResultMap">
+		<id property="id" column="id" />
+		<result property="cid" column="cid" />
+		<result property="cname" column="cname" />
+		<result property="price" column="price" />
+		<result property="ca_id" column="ca_id" />
+		<result property="da_id" column="da_id" />
+		<result property="c_count" column="c_count" />
+		<association property="category"
+			javaType="com.zjsru.bean.Category">
+			<id property="id" column="id" />
+			<result property="ca_id" column="ca_id" />
+			<result property="ca_name" column="ca_name" />
+		</association>
+	</resultMap>
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjsru.mapper.OrderDao">
+	<select id="selectAllOrder" resultMap="orderMap">
+		select * from t_order
+	</select>
+
+	<insert id="insertOrder" parameterType="Order">
+		insert into t_order
+		(aid,name,uid,phone,detail)
+		values
+		(#{aid},#{name},#{uid},#{phone},#{detail})
+	</insert>
+	
+	<update id="updateOrder" parameterType="Order">
+		update t_order set
+		id=#{id},oid=#{oid},aid=#{aid},cid=#{cid},count=#{count},sum=#{sum},state=#{state}
+		where aid=#{aid}
+	</update>
+
+	<select id="selectByOid" parameterType="int"
+		resultMap="orderMap">
+		select * from t_order o,address a
+		where o.aid=a.aid
+		and o.aid=#{aid}
+	</select>
+	
+	<resultMap type="com.zjsru.bean.Order" id="orderMap">
+		<id property="id" column="id" />
+		<result property="oid" column="oid" />
+		<result property="aid" column="aid" />
+		<result property="cid" column="cid" />
+		<result property="count" column="count" />
+		<result property="sum" column="sum" />
+		<result property="state" column="state" />
+		<association property="address"
+			javaType="com.zjsru.bean.Address">
+			<id property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="ca_name" column="ca_name" />
+		</association>
+	</resultMap>
+
+</mapper>

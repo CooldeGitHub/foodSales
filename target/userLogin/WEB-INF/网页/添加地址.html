@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <tille></title>
+	<style type="text/css">
+        h1{font-size:30px;color:#930;text-align:center;}
+    </style>
+    <script type="text/javascript">
+		function check(form){
+			with(form){
+				if(aid.value == ""){
+					alert("地址编号不能为空");
+					return false;
+				}
+				if(name.value == ""){
+					alert("收件人不能为空");
+					return false;
+				}
+				if(phone.value == ""){
+					alert("手机号码不能为空");
+					return false;
+				}
+				if(detail.value == ""){
+					alert("详细地址不能为空");
+					return false;
+				}
+				return true;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>添加收货地址</h1>
+	<!-- <form method="post"  action="/addAddress">
+		<p>
+		    <lable for="username">地址编号:</label>
+			<input type="text" name="" id="username"></p>
+        <p>
+        <p>
+		    <lable for="username">收件人:</label>
+			<input type="text" name="" id="username"></p>
+        <p>
+        	<p>
+		    <lable for="username">手机号码:</label>
+			<input type="text" name="" id="username"></p>
+        <p>
+        <p>
+			<lable for="introduce">详细地址:</label>
+		    <textarea name="commet"rows=5 cols=60  id="introduce">
+		    </textarea>
+		</p>
+		<p>
+        	<input type="submit"value="提交">
+            <input type="reset"value="清空">
+    	</p>
+     </form> -->
+	<form action="addAddress" method="post" onsubmit="return check(this);">
+		<table align="center" width="450">
+			<tr>
+				<td align="right">地址编号：</td>
+				<td><input type="text" name="did" /></td>
+			</tr>
+			<tr>
+				<td align="right">收件人：</td>
+				<td><input type="text" name="name" /></td>
+			</tr>
+			<tr>
+				<td align="right">手机号码：</td>
+				<td><input type="text" name="sex" /></td>
+			</tr>
+			<tr>
+				<td align="right">详细地址：</td>
+				<td><input type="text" name="age" /></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2">
+					<input type="submit" value="添 加">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+
+
+
+
+
+<!-- 		<p>
+		    <lable for="username">收件人:</label>
+			<input type="text" name="" id="username"></p>
+        <p>
+			<lable for="password">手机号码:</label>
+		    <input type="password" name=""id="password"></p>
+		<p>
+			性别：<input type="radio" name="性别">男
+		    <input type="radio" name="性别">女</p>
+	    <p>
+			年级：<select name="nianji">
+		     <option>one
+			 <option>two 
+			 <option>three
+			 <option>four
+			 <option selected>one
+			 </select></p>
+		<p>
+			爱好：<input type="checkbox"name="sport">运动
+			 <input type="checkbox"name="music">音乐
+			 <input type="checkbox"name="movie">电影
+			 <input type="checkbox"name="read">阅读</p>
+		<p>
+	    	文件：<input type="file" name="filename"></p> -->
+		
+</body>
+</html>

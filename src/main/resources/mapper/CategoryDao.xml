@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjsru.mapper.CategoryDao">
+	<select id="selectCategoryByCa_id" parameterType="int"
+		resultMap="caResultMap">
+		select * from category
+		where ca_id = #{ca_id}
+	</select>
+
+	<resultMap type="com.zjsru.bean.Category" id="caResultMap">
+		<id property="id" column="id" />
+		<result property="ca_id" column="ca_id" />
+		<result property="ca_name" column="ca_name" />
+		<collection property="commoditys" column="ca_id"
+			ofType="com.zjsru.bean.Commodity"
+			select="com.zjsru.mapper.CommodityDao.selectByCa_id">
+			<id property="id" column="id" />
+			<result property="cid" column="cid" />
+			<result property="cname" column="cname" />
+			<result property="price" column="price" />
+			<result property="ca_id" column="ca_id" />
+			<result property="da_id" column="da_id" />
+			<result property="c_count" column="c_count" />
+		</collection>
+	</resultMap>
+</mapper>

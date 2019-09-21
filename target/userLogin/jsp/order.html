@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<!-- Mirrored from www.zi-han.net/theme/hplus/timeline_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:47 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+<meta name="description"
+	content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+<link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+<link href="../css/animate.min.css" rel="stylesheet">
+<link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../js/content.min.js?v=1.0.0"></script>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="js/content.min.js?v=1.0.0"></script>
+<script type="text/javascript"
+			src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+</head>
+
+<body class="gray-bg">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="wrapper wrapper-content">
+				<div class="row animated fadeInRight">
+					<div class="col-sm-12">
+						<div class="ibox float-e-margins">
+							<div class="" id="ibox-content">
+								<h2>我的订单</h2>
+								<div class="clients-list">
+									<ul class="nav nav-tabs">
+										<!-- <span class="pull-right small text-muted">n个地址</span> -->
+										<li class="active"><a data-toggle="tab" href="#tab-1"><i
+												class="fa fa-user"></i>订单列表</a></li>
+									</ul>
+									<div class="tab-content">
+										<div id="tab-1" class="tab-pane active">
+											<div class="full-height-scroll">
+												<div class="table-responsive">
+													<table class="table table-striped table-hover">
+														<tbody>
+															<tr>
+
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- <div id="vertical-timeline"
+									class="vertical-container light-timeline">
+									<div class="vertical-timeline-block">
+										<div class="vertical-timeline-icon navy-bg">
+											<i class="glyphicon glyphicon-remove"></i>
+										</div>
+										<div class="vertical-timeline-content">
+											<h2>康师傅酸菜牛肉面</h2>
+											<p>数量：200</p>
+											<a href="单据.html" class="btn btn-sm btn-warning"> 正在处理
+												查看单据</a> <span class="vertical-date"> 下单时间 <br> <small>2月3日</small>
+											</span>
+										</div>
+									</div>
+								</div> -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
+        $(function() {
+            $.ajax({
+                async : true,
+                type : "get",
+                url : "/foodSales/order/findAllOrder",
+                dataType : "json",
+                success : function(data) {
+                console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var html = "";
+                        html = '<td><a data-toggle="tab" href="#contact-3" class="client-link"></a></td><td>订单id:'
+                        + data[i].oid
+                        + '</a></td><td>地址id:'
+                        + data[i].aid
+                        + '</a></td><td>商品id:'
+                        + data[i].cid
+                        + '</a></td><td>商品数量:'
+                        + data[i].price
+                        + '</a></td><td>订单总额:'
+                        + data[i].sum
+                        + '</td><td class="contact-type"></td><td>'
+                        + '<td>';
+
+                        if(data[i].state==1){
+                        	html+= '<td><a href="finish.html" class="btn btn-sm btn-warning">未付款</a></td>';
+						}else{
+							html+= '<td><a href="finish.html" class="btn btn-primary">已付款</a></td>';
+						}
+                        $("#tab-1 tbody").append(
+                            "<tr>" + html + "</tr>");
+                    }
+                },
+                error : function(data) {
+                    alert(data.result);
+                }
+            })
+        })
+    </script>
+
+
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/timeline_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:47 GMT -->
+</html>

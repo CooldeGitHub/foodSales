@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<tille>
+</title>
+<style type="text/css">
+h1 {
+	font-size: 30px;
+	color: #930;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+	function check(form){
+		with(form){
+			if(aid.value == ""){
+				alert("地址编号不能为空");
+				return false;
+			}
+			if(name.value == ""){
+				alert("收件人不能为空");
+				return false;
+			}
+			if(uid.value == ""){
+				alert("用户id不能为空");
+				return false;
+			}
+			if(phone.value == ""){
+				alert("手机号码不能为空");
+				return false;
+			}
+			if(detail.value == ""){
+				alert("详细地址不能为空");
+				return false;
+			}
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>添加收货地址</h1>
+	<form action="../address/addAddress" method="post"
+		onsubmit="return check(this);">
+		<table align="center" width="450">
+			<tr>
+				<td align="right">地址编号：</td>
+				<td><input type="text" name="aid" /></td>
+			</tr>
+			<tr>
+				<td align="right">收件人：</td>
+				<td><input type="text" name="name" /></td>
+			</tr>
+			<tr>
+				<td align="right">用户id：</td>
+				<td><input type="text" name="uid" /></td>
+			</tr>
+			<tr>
+				<td align="right">手机号码：</td>
+				<td><input type="text" name="phone" /></td>
+			</tr>
+			<tr>
+				<td align="right">详细地址：</td>
+				<td><input type="text" name="detail" /></td>
+			</tr>
+			<tr>
+				<td align="center" colspan="2"><input type="submit" value="添 加">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

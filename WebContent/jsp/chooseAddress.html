@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<!-- Mirrored from www.zi-han.net/theme/hplus/clients.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description"
+          content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <script src="../js/jquery.min.js?v=2.1.4"></script>
+    <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../js/content.min.js?v=1.0.0"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h2>用户地址管理</h2>
+                    <div>
+                        <a href="addAddress.html" onclick="load(this);return false;">
+                            <span class="btn btn-sm btn-warning">添加地址</span>
+                        </a>
+                    </div>
+                    <br>
+                    <!-- 						<div class="input-group">
+                        <input type="text" placeholder="查找地址" class="input form-control">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn btn-primary">
+                                <i class="fa fa-search"></i>搜索
+                            </button>
+                        </span>
+                    </div> -->
+                    <div class="clients-list">
+                        <ul class="nav nav-tabs">
+                            <!-- <span class="pull-right small text-muted">n个地址</span> -->
+                            <li class="active"><a data-toggle="tab" href="#tab-1"><i
+                                    class="fa fa-user"></i>收货地址</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="full-height-scroll">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <tbody id="tab">
+                                            <tr>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* $(function(){$(".full-height-scroll").slimScroll({height:"100%"})}); */
+    $(function() {
+        $.ajax({
+            async : true, //表示请求是否异步处理
+            type : "get", //请求类型
+            url : "/foodSales/address/findAllAddress",//请求的 URL地址
+            dataType : "json",//返回的数据类型
+            success : function(data) {
+                console.log(data); //在控制台打印服务器端返回的数据
+                for (var i = 0; i < data.length; i++) {
+                    var html = "";
+                    html = '<td><a data-toggle="tab" href="#contact-3" class="client-link">'
+                        + data[i].name
+                        + '</a></td><td>'
+                        + data[i].phone
+                        + '</a></td><td>'
+                        + data[i].detail
+                        + '</td><td class="contact-type"></td>'
+                        + '<td><button data-id="'+data[i].aid+'"  class="btn btn-sm btn-warning">选择</a></td>'
+                        + '<td><a href="addressmanage.html" class="btn btn-primary">删除</a></td>';
+                    $("#tab-1 tbody").append(
+                        "<tr>" + html + "</tr>");
+                }
+            },
+            error : function(data) {
+                delete html
+            }
+        })
+    })
+
+    $(function(){
+        $("#tab").on("click", ":button", function(event){
+            window.parent.aid = $(this).attr("data-id");
+            $.ajax({
+                async : true,
+                type : "post",
+                url : "/foodSales/order/addOrder",
+                contentType:"application/json",
+                data:JSON.stringify({
+                    aid:window.parent.aid,
+                    commodities:window.parent.shop
+                }),
+                dataType : "json",
+                success:function () {
+                    alert("下单成功");
+                },
+                error:function () {
+                    alert("下单失败")
+                }
+            })
+            window.location.href="order.html";
+            window.parent.shop=[];
+        });
+    });
+
+
+</script>
+<script type="text/javascript"
+        src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+</body>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/clients.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+</html>

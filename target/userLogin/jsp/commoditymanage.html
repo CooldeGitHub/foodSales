@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<!-- Mirrored from www.zi-han.net/theme/hplus/clients.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+<meta name="description"
+	content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+<link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+<link href="../css/animate.min.css" rel="stylesheet">
+<link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+<script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../js/content.min.js?v=1.0.0"></script>
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper wrapper-content  animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="ibox">
+					<div class="ibox-content">
+						<h2>商品页面</h2>
+						<br>
+						<!--                        <div class="input-group">
+                            <input type="text" placeholder="查找地址" class="input form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn btn-primary">
+                                    <i class="fa fa-search"></i>搜索
+                                </button>
+                            </span>
+                        </div> -->
+						<div class="clients-list">
+							<ul class="nav nav-tabs">
+								<!-- <span class="pull-right small text-muted">n个地址</span> -->
+								<li class="active"><a data-toggle="tab" href="#tab-1"><i
+										class="fa fa-user"></i>商品列表</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="tab-1" class="tab-pane active">
+									<div class="full-height-scroll">
+										<div class="table-responsive">
+											<table class="table table-striped table-hover">
+												<tbody id="tab">
+													<tr>
+														<td>商品名</td>
+														<td>商品编号</td>
+														<td>价格</td>
+														<td>折扣</td>
+														<td>库存</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+        $(function() {
+            $.ajax({
+                async : true,
+                type : "get",
+                url : "/foodSales/commodity/findAllCommodity",
+                dataType : "json",
+                success : function(data) {
+                console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var html = "";
+                        html = '<td class="cname">'
+                        + data[i].cname
+                        + '</a></td><td class="cid">'
+                        + data[i].cid
+                        + '</a></td><td class="price">'
+                        + data[i].price
+                        + '</a></td><td class="da_id">'
+                        + data[i].da_id
+                        + '</a></td><td class="c_count">'
+                        + data[i].c_count
+                        + '</td><td class="contact-type"></td><td>'
+                        + '<td><input type="button" class="btn btn-sm btn-warning" value="加入购物车"></td><td>';
+                        $("#tab-1 tbody").append(
+                            "<tr>" + html + "</tr>");
+                    }
+                },
+                error : function(data) {
+                    alert(data.result);
+                }
+            })
+        })
+
+
+        $(function(){
+            $("#tab").on("click", ":button", function(event){
+                var prodoct ={cname:'',price:'',da_id:''};
+                var tr = $(this).parents('tr');
+                var cname = tr.find(".cname").text();
+                prodoct.cname = cname;
+                var price = tr.find(".price").text();
+                prodoct.price = price;
+                var da_id = tr.find(".da_id").text();
+                prodoct.da_id = da_id;
+                window.parent.shopcartflag = false;
+                window.parent.shop.push(prodoct);
+            });
+        });
+    </script>
+	<script type="text/javascript"
+		src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+</body>
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/clients.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:44 GMT -->
+</html>
