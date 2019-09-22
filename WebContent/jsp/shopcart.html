@@ -58,69 +58,73 @@ input text {
 </body>
 
 <script type="text/javascript">
-        $(function () {
-            var shopcart = window.parent.shop;
-            if($(".product").length>0){
-                $("#order").remove(".product");
-            }
-            for(var i=0 ;i<shopcart.length;i++){
-                var html=
-                    '<td>'+window.parent.shop[i].cname+'</td>' +
-                    '<td>1</td>' +
-                    '<td>'+window.parent.shop[i].price+'</td>' +
-                    '<td>'+window.parent.shop[i].da_id+'</td>' +
-                    '<td><input id="edit1" type="button" value="修改"  />\n' +
-                    '    <input class="rowdel" type="button" value="删除" onclick=\'editTable(this)\'/></td>';
-                $("#order").append("<tr class='product'>" + html + "</tr>");
-            }
-        })
-        
-		$("#buy").click(function () {
-			window.location.href="chooseAddress.html";
-		})
+	$(function() {
+		var shopcart = window.parent.shop;
+		if ($(".product").length > 0) {
+			$("#order").remove(".product");
+		}
+		for (var i = 0; i < shopcart.length; i++) {
+			var html = '<td>'
+					+ window.parent.shop[i].cname
+					+ '</td>'
+					+ '<td>1</td>'
+					+ '<td>'
+					+ window.parent.shop[i].price
+					+ '</td>'
+					+ '<td>'
+					+ window.parent.shop[i].da_id
+					+ '</td>'
+					+ '<td><input id="edit1" type="button" value="修改"  />\n'
+					+ '    <input class="rowdel" type="button" value="删除" onclick=\'editTable(this)\'/></td>';
+			$("#order").append("<tr class='product'>" + html + "</tr>");
+		}
+	})
 
+	$("#buy").click(function() {
+		window.location.href = "chooseAddress.html";
+	})
 
-        function addRow(){    
-            //行的长度    
-            var rowlength=document.getElementById("order").rows.length;    
-            //得到整个表格对象    
-            var order = document.getElementById("order").insertRow(rowlength-1);    
-            order.id=rowlength-1;    
-            //插入列    
-            // var cel1=order.insertCell(0).innerHTML="游戏光盘";    
-            // var cel2=order.insertCell(1).innerHTML="34";    
-            // var cel3=order.insertCell(2).innerHTML="&yen;58.40";    
-            // var cel4=order.insertCell(3).innerHTML="<input type=\"button\"value=\"删除\" onclick=\"delRow('"+(rowlength-1)+"')\"/>"+ "<input type=\"button\"value=\"修改\" onclick=\"editRow('"+(rowlength-1)+"')\"/>"    
-        }
-        function editTable(id) {
-         //得到当前所在行
-            var tr = id.parentNode.parentNode;
-            var index = id.parentNode.parentNode.rowIndex;
-            tr.remove();
-            window.parent.shop.splice(index-1,1);
+	function addRow() {
+		//行的长度    
+		var rowlength = document.getElementById("order").rows.length;
+		//得到整个表格对象    
+		var order = document.getElementById("order").insertRow(rowlength - 1);
+		order.id = rowlength - 1;
+		//插入列    
+		// var cel1=order.insertCell(0).innerHTML="游戏光盘";    
+		// var cel2=order.insertCell(1).innerHTML="34";    
+		// var cel3=order.insertCell(2).innerHTML="&yen;58.40";    
+		// var cel4=order.insertCell(3).innerHTML="<input type=\"button\"value=\"删除\" onclick=\"delRow('"+(rowlength-1)+"')\"/>"+ "<input type=\"button\"value=\"修改\" onclick=\"editRow('"+(rowlength-1)+"')\"/>"    
+	}
+	function editTable(id) {
+		//得到当前所在行
+		var tr = id.parentNode.parentNode;
+		var index = id.parentNode.parentNode.rowIndex;
+		tr.remove();
+		window.parent.shop.splice(index - 1, 1);
 
-        }
-        function editRow(rowID){    
-            var row=document.getElementById(rowID);    
-            var cel=row.cells;    
-            var text=cel[1].innerHTML;    
-            cel[1].innerHTML="<input type='text' value='"+text+"' style='width:40px;'>"    
-            cel[3].lastChild.value="确定";    
-            cel[3].lastChild.setAttribute("onclick","update('"+rowID+"')");    
-        }             
-        function update(qwe){    
-            var row=document.getElementById(qwe);    
-            var cel=row.cells;    
-            var text=cel[1].lastChild.value;    
-            cel[1].innerHTML=text;    
-            cel[3].lastChild.value="修改";    
-            cel[3].lastChild.setAttribute("onclick","editRow('"+qwe+"')");    
-        } 
-        // function add(){    
-        //     var a = document.getElementById("order").rows.length;    
-        //     var b = document.getElementById("order").insertRow(a-1);    
-        //     var one1 = b.insertCell(0).innerHTML="123";    
-        // }   
+	}
+	function editRow(rowID) {
+		var row = document.getElementById(rowID);
+		var cel = row.cells;
+		var text = cel[1].innerHTML;
+		cel[1].innerHTML = "<input type='text' value='"+text+"' style='width:40px;'>"
+		cel[3].lastChild.value = "确定";
+		cel[3].lastChild.setAttribute("onclick", "update('" + rowID + "')");
+	}
+	function update(qwe) {
+		var row = document.getElementById(qwe);
+		var cel = row.cells;
+		var text = cel[1].lastChild.value;
+		cel[1].innerHTML = text;
+		cel[3].lastChild.value = "修改";
+		cel[3].lastChild.setAttribute("onclick", "editRow('" + qwe + "')");
+	}
+	// function add(){    
+	//     var a = document.getElementById("order").rows.length;    
+	//     var b = document.getElementById("order").insertRow(a-1);    
+	//     var one1 = b.insertCell(0).innerHTML="123";    
+	// }
 </script>
 
 </html>
