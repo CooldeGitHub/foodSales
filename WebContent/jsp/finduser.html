@@ -11,21 +11,30 @@ h1 {
 	text-align: center;
 }
 </style>
+<script src="../js/jquery.min.js?v=2.1.4"></script>
 </head>
 <body>
 	<h1>查询用户信息</h1>
-	<form action="foodSales/user/findByUid" method="post">
+	<form action="user.html">
 		<div style="padding: 20px;"></div>
 		<table>
 			<tr>
 				<td align="right">请输入你的id：</td>
-				<td><input type="text" name="uid" /></td>
+				<td><input id="input_uid" type="text" name="uid" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" name="btn" value="查询" /></td>
+				<td colspan="2"><input id= "input_btn" type="submit" name="btn" value="查询" /></td>
 			</tr>
 		</table>
 	</form>
 
 </body>
+
+<script type="text/javascript">
+	$("#input_btn").click(function () {
+			window.parent.uid = $("#input_uid").val();
+
+		})
+</script>
+
 </html>

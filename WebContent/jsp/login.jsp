@@ -7,7 +7,7 @@
 <title>This is login.jsp</title>
 </head>
 <body>
-	<form action="checkLogin" method="post">
+	<form action="/foodSales/user/checkLogin" method="post">
         <table>
             <tr>
                 <td>用户名:</td>

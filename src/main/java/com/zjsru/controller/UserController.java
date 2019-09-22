@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.zjsru.bean.User;
@@ -33,7 +34,7 @@ public class UserController {
 		userService.checkLogin(user.getUid(), user.getUname(), user.getPassword());
 		if (user != null) {
 			model.addAttribute("user", user);
-			return "index.html";
+			return "redirect:/";
 		}
 		return "fail.jsp";
 	}
@@ -55,11 +56,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/findByUid",method = RequestMethod.GET)
-	public String findByUid(HttpServletRequest req, Model model) {
+	@ResponseBody
+	public User findByUid(HttpServletRequest req) {
 		int uid = Integer.parseInt(req.getParameter("uid"));
 		User user = userService.findByUid(uid);
-		model.addAttribute("user", user);
-		return "/jsp/user.html";
+		return user;
 	}
 	@RequestMapping(value = "/userManage", method = RequestMethod.GET)
 	public String userManage() {
