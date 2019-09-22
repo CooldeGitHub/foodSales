@@ -71,42 +71,41 @@
 	<script>
 		/* $(function(){$(".full-height-scroll").slimScroll({height:"100%"})}); */
 		$(function() {
-			$.ajax({
-				async : true, //表示请求是否异步处理
-				type : "get", //请求类型
-				url : "/foodSales/address/findAllAddress?",//请求的 URL地址
-				dataType : "json",//返回的数据类型
-				success : function(data) {
-					console.log(data); //在控制台打印服务器端返回的数据
-					for (var i = 0; i < data.length; i++) {
-						var html = "";
-						html = '<td><a data-toggle="tab" href="#contact-3" class="client-link">'
-								+ data[i].name
-								+ '</a></td><td>'
-								+ data[i].phone
-								+ '</a></td><td>'
-								+ data[i].detail
-								+ '</td><td class="contact-type"></td>'
-								+ '<td><button data-id="'+data[i].aid+'"  class="btn btn-sm btn-warning">修改</a></td>'
-								+ '<td><a href="addressmanage.html" class="btn btn-primary">删除</a></td>';
-						$("#tab-1 tbody").append(
-								"<tr>" + html + "</tr>");
-					}
-				},
-				error : function(data) {
-					delete html
-				}
-			})
+			$
+					.ajax({
+						async : true, //表示请求是否异步处理
+						type : "get", //请求类型
+						url : "/foodSales/address/findAllAddress?",//请求的 URL地址
+						dataType : "json",//返回的数据类型
+						success : function(data) {
+							console.log(data); //在控制台打印服务器端返回的数据
+							for (var i = 0; i < data.length; i++) {
+								var html = "";
+								html = '<td><a data-toggle="tab" href="#contact-3" class="client-link">'
+										+ data[i].name
+										+ '</a></td><td>'
+										+ data[i].phone
+										+ '</a></td><td>'
+										+ data[i].detail
+										+ '</td><td class="contact-type"></td>'
+										+ '<td><button data-id="'+data[i].aid+'"  class="btn btn-sm btn-warning">修改</a></td>'
+										+ '<td><a href="addressmanage.html" class="btn btn-primary">删除</a></td>';
+								$("#tab-1 tbody").append(
+										"<tr>" + html + "</tr>");
+							}
+						},
+						error : function(data) {
+							delete html
+						}
+					})
 		})
 
-		$(function(){
-			$("#tab").on("click", ":button", function(event){
+		$(function() {
+			$("#tab").on("click", ":button", function(event) {
 				window.parent.aid = $(this).attr("data-id");
-				window.location.href="updateaddress.html";
+				window.location.href = "updateaddress.html";
 			});
 		});
-
-
 	</script>
 	<script type="text/javascript"
 		src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>

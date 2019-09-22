@@ -8,20 +8,15 @@
 <body>
 	<h3>注册页面</h3>
 	<hr />
-	<form action="doRegist" method="post">
+	<form action="/foodSales/user/doManagerRegist" method="post">
 		<table border="1px">
 			<tr height="35px">
-				<td width="150px">用户id:</td>
-				<td width="300px"><input type="text" name="uid" id="uid">
+				<td width="150px">id:</td>
+				<td width="300px"><input type="text" name="id" id="id">
 				</td>
 			</tr>
 			<tr height="35px">
-				<td width="150px">用户名:</td>
-				<td width="300px"><input type="text" name="uname" id="uname">
-				</td>
-			</tr>
-			<tr height="35px">
-				<td>密码:</td>
+				<td>password:</td>
 				<td><input type="text" name="password" id="password"></td>
 			</tr>
 			<tr>

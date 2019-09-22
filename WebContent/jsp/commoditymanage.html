@@ -69,58 +69,68 @@
 
 
 	<script>
-        $(function() {
-            $.ajax({
-                async : true,
-                type : "get",
-                url : "/foodSales/commodity/findAllCommodity",
-                dataType : "json",
-                success : function(data) {
-                console.log(data);
-                    for (var i = 0; i < data.length; i++) {
-                        var html = "";
-                        html = '<td class="cname">'
-                        + data[i].cname
-                        + '</a></td><td class="cid">'
-                        + data[i].cid
-                        + '</a></td><td class="price">'
-                        + data[i].price
-                        + '</a></td><td class="da_id">'
-                        + data[i].da_id
-                        + '</a></td><td class="c_count">'
-                        + data[i].c_count
-                        + '</td><td class="contact-type"></td><td>'
-                        + '<td><input type="button" class="btn btn-sm btn-warning" value="加入购物车"></td><td>';
-                        $("#tab-1 tbody").append(
-                            "<tr>" + html + "</tr>");
-                    }
-                },
-                error : function(data) {
-                    alert(data.result);
-                }
-            })
-        })
+		$(function() {
+			$
+					.ajax({
+						async : true,
+						type : "get",
+						url : "/foodSales/commodity/findAllCommodity",
+						dataType : "json",
+						success : function(data) {
+							console.log(data);
+							for (var i = 0; i < data.length; i++) {
+								var html = "";
+								html = '<td class="cname">'
+										+ data[i].cname
+										+ '</a></td><td class="cid">'
+										+ data[i].cid
+										+ '</a></td><td class="price">'
+										+ data[i].price
+										+ '</a></td><td class="da_id">'
+										+ data[i].da_id
+										+ '</a></td><td class="c_count">'
+										+ data[i].c_count
+										+ '</td><td class="contact-type"></td><td>'
+										+ '<td><input type="button" class="btn btn-sm btn-warning" value="加入购物车"></td><td>';
+								$("#tab-1 tbody").append(
+										"<tr>" + html + "</tr>");
+							}
+						},
+						error : function(data) {
+							alert(data.result);
+						}
+					})
+		})
 
-
-        $(function(){
-            $("#tab").on("click", ":button", function(event){
-                var prodoct ={cid:'',cname:'',price:'',da_id:''};
-                var tr = $(this).parents('tr');
-                var cid = tr.find(".cid").text();
-                prodoct.cid = cid;
-                var cname = tr.find(".cname").text();
-                prodoct.cname = cname;
-                var price = tr.find(".price").text();
-                prodoct.price = price;
-                window.parent.countPrice=parseFloat(window.parent.countPrice)+parseFloat(price);
-                var da_id = tr.find(".da_id").text();
-                prodoct.da_id = da_id;
-                window.parent.shopcartflag = false;
-				window.parent.countCommodity++;
-                window.parent.shop.push(prodoct);
-            });
-        });
-    </script>
+		$(function() {
+			$("#tab")
+					.on(
+							"click",
+							":button",
+							function(event) {
+								var prodoct = {
+									cid : '',
+									cname : '',
+									price : '',
+									da_id : ''
+								};
+								var tr = $(this).parents('tr');
+								var cid = tr.find(".cid").text();
+								prodoct.cid = cid;
+								var cname = tr.find(".cname").text();
+								prodoct.cname = cname;
+								var price = tr.find(".price").text();
+								prodoct.price = price;
+								window.parent.countPrice = parseFloat(window.parent.countPrice)
+										+ parseFloat(price);
+								var da_id = tr.find(".da_id").text();
+								prodoct.da_id = da_id;
+								window.parent.shopcartflag = false;
+								window.parent.countCommodity++;
+								window.parent.shop.push(prodoct);
+							});
+		});
+	</script>
 	<script type="text/javascript"
 		src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </body>

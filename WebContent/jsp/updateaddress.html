@@ -5,17 +5,17 @@
 <title></title>
 <script src="../js/jquery.min.js?v=2.1.4"></script>
 <script type="text/javascript">
-	function check(form){
-		with(form){
-			if(name.value == ""){
+	function check(form) {
+		with (form) {
+			if (name.value == "") {
 				alert("收件人不能为空");
 				return false;
 			}
-			if(phone.value == ""){
+			if (phone.value == "") {
 				alert("手机号码不能为空");
 				return false;
 			}
-			if(detail.value == ""){
+			if (detail.value == "") {
 				alert("详细地址不能为空");
 				return false;
 			}
@@ -52,22 +52,24 @@
 		</table>
 	</form>
 	<script>
-		$(function () {
-			$.ajax({
-				async : true, //表示请求是否异步处理
-				type : "get", //请求类型
-				url : "/foodSales/address/findAddress?aid="+window.parent.aid,//请求的 URL地址
-				dataType : "json",//返回的数据类型
-				success:function (data) {
-					$(".aid").attr("value",data.aid);
-					$(".name").attr("value",data.name);
-					$(".phone").attr("value",data.phone);
-					$(".detail").attr("value",data.detail);
-				},
-				error:function (data) {
-					alert("获取失败")
-				}
-			})
+		$(function() {
+			$
+					.ajax({
+						async : true, //表示请求是否异步处理
+						type : "get", //请求类型
+						url : "/foodSales/address/findAddress?aid="
+								+ window.parent.aid,//请求的 URL地址
+						dataType : "json",//返回的数据类型
+						success : function(data) {
+							$(".aid").attr("value", data.aid);
+							$(".name").attr("value", data.name);
+							$(".phone").attr("value", data.phone);
+							$(".detail").attr("value", data.detail);
+						},
+						error : function(data) {
+							alert("获取失败")
+						}
+					})
 		})
 	</script>
 </body>
