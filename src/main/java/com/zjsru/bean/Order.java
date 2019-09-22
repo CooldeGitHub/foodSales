@@ -7,8 +7,8 @@ public class Order {
 	private int oid;
 	private int aid;
 	private int cid;
-	private int count;
-	private float sum;
+	private int o_count;
+	private float o_sum;
 	private int state;
 	private List<Commodity> commoditys;
 	private Address address;
@@ -45,19 +45,19 @@ public class Order {
 	}
 
 	public int getCount() {
-		return count;
+		return o_count;
 	}
 
 	public void setCount(int count) {
-		this.count = count;
+		this.o_count = count;
 	}
 
 	public float getSum() {
-		return sum;
+		return o_sum;
 	}
 
 	public void setSum(float sum) {
-		this.sum = sum;
+		this.o_sum = sum;
 	}
 
 	public int getState() {
@@ -86,8 +86,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", oid=" + oid + ", aid=" + aid + ", cid=" + cid + ", count=" + count + ", sum="
-				+ sum + ", state=" + state + ", commoditys=" + commoditys + ", address=" + address + "]";
+		return "Order [id=" + id + ", oid=" + oid + ", aid=" + aid + ", cid=" + cid + ", count=" + o_count + ", sum="
+				+ o_sum + ", state=" + state + ", commoditys=" + commoditys + ", address=" + address + "]";
 	}
 	
 }

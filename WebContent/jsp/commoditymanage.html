@@ -104,15 +104,19 @@
 
         $(function(){
             $("#tab").on("click", ":button", function(event){
-                var prodoct ={cname:'',price:'',da_id:''};
+                var prodoct ={cid:'',cname:'',price:'',da_id:''};
                 var tr = $(this).parents('tr');
+                var cid = tr.find(".cid").text();
+                prodoct.cid = cid;
                 var cname = tr.find(".cname").text();
                 prodoct.cname = cname;
                 var price = tr.find(".price").text();
                 prodoct.price = price;
+                window.parent.countPrice=parseFloat(window.parent.countPrice)+parseFloat(price);
                 var da_id = tr.find(".da_id").text();
                 prodoct.da_id = da_id;
                 window.parent.shopcartflag = false;
+				window.parent.countCommodity++;
                 window.parent.shop.push(prodoct);
             });
         });

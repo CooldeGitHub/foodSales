@@ -8,11 +8,11 @@
 		select * from t_order
 	</select>
 
-	<insert id="insertOrder" parameterType="Order">
+	<insert id="insertOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="oid">
 		insert into t_order
-		(aid,name,uid,phone,detail)
+		(aid,o_count,o_sum,state)
 		values
-		(#{aid},#{name},#{uid},#{phone},#{detail})
+		(#{aid},#{o_count},#{o_sum},#{state})
 	</insert>
 	
 	<update id="updateOrder" parameterType="Order">
@@ -33,8 +33,8 @@
 		<result property="oid" column="oid" />
 		<result property="aid" column="aid" />
 		<result property="cid" column="cid" />
-		<result property="count" column="count" />
-		<result property="sum" column="sum" />
+		<result property="o_count" column="o_count" />
+		<result property="o_sum" column="o_sum" />
 		<result property="state" column="state" />
 		<association property="address"
 			javaType="com.zjsru.bean.Address">
@@ -43,5 +43,10 @@
 			<result property="ca_name" column="ca_name" />
 		</association>
 	</resultMap>
+
+	<insert id="insertShopCart" parameterType="ShoppingCart">
+		INSERT INTO shopping_cart (cid,cname,oid,o_count,price)
+		VALUES (#{cid},#{cname},#{oid},1,#{price})
+	</insert>
 
 </mapper>

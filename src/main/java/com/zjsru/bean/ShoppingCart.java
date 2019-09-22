@@ -6,7 +6,7 @@ public class ShoppingCart {
 	private int id;
 	private int cid;
 	private String cname;
-	private int uid;
+	private int oid;
 	private int count;
 	private float price;
 	private List<Commodity> commoditys;
@@ -29,10 +29,10 @@ public class ShoppingCart {
 		this.cname = cname;
 	}
 	public int getUid() {
-		return uid;
+		return oid;
 	}
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setOid(int oid) {
+		this.oid = oid;
 	}
 	public int getCount() {
 		return count;
@@ -54,7 +54,7 @@ public class ShoppingCart {
 	}
 	@Override
 	public String toString() {
-		return "ShoppingCart [id=" + id + ", cid=" + cid + ", cname=" + cname + ", uid=" + uid + ", count=" + count
+		return "ShoppingCart [id=" + id + ", cid=" + cid + ", cname=" + cname + ", oid=" + oid + ", count=" + count
 				+ ", price=" + price + ", commoditys=" + commoditys + "]";
 	}
 	
