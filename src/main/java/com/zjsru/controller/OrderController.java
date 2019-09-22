@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zjsru.bean.Commodity;
+import com.zjsru.bean.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import com.zjsru.service.OrderService;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
+
 
 	@RequestMapping(value = "/findAllOrder",method = RequestMethod.GET)
 	@ResponseBody
@@ -72,15 +74,34 @@ public class OrderController {
 //		orderService.addOrder(order);
 //		return "redirect:findAllOrder";
 //	}
-
+	@ResponseBody
 	@RequestMapping(value = "/addOrder", method = RequestMethod.POST)
-	public String addOrder(@RequestBody String json)  {
-		JSONObject jsonObject = JSON.parseObject(json);
-		String aid =  jsonObject.get("aid").toString();
-		List<Object> list =jsonObject.getJSONArray("commodities");
-		JSONObject cameObject = (JSONObject) list.get(0);
-		String cname = cameObject.get("cname").toString();
-		return "";
+	public Order addOrder(@RequestBody String json)  {
+		try {
+			JSONObject jsonObject = JSON.parseObject(json);
+			int aid =Integer.parseInt(jsonObject.get("aid").toString());
+			List<Object> list =jsonObject.getJSONArray("commodities");
+			Float sum = Float.parseFloat(jsonObject.get("sum").toString());
+			int count = Integer.parseInt(jsonObject.get("count").toString());
+			Order order = new Order();
+			order.setAid(aid);
+			order.setSum(sum);
+			order.setCount(count);
+			order.setState(0);
+			int oid = orderService.addOrder(order);
+			for (Object o:list) {
+				JSONObject commodityObject = (JSONObject)o;
+				ShoppingCart shopCart = new ShoppingCart();
+				shopCart.setCname(commodityObject.get("cname").toString());
+				shopCart.setPrice(Float.parseFloat(commodityObject.get("price").toString()));
+				shopCart.setOid(oid);
+				shopCart.setCid(Integer.parseInt(commodityObject.get("cid").toString()));
+			}
+			return order;
+		}catch (Exception e){
+			return new Order();
+		}
+
 	}
 
 	@RequestMapping(value = "/update")

@@ -106,21 +106,29 @@
                 async : true,
                 type : "post",
                 url : "/foodSales/order/addOrder",
-                contentType:"application/json",
+                contentType:"application/json;charset=UTF-8",
                 data:JSON.stringify({
                     aid:window.parent.aid,
-                    commodities:window.parent.shop
+                    commodities:window.parent.shop,
+                    sum:window.parent.countPrice,
+                    count:window.parent.countCommodity
                 }),
                 dataType : "json",
-                success:function () {
+                success:function (result) {
                     alert("下单成功");
+                    window.location.href="order.html";
+                    window.parent.shop=[];
+                    window.parent.countCommodity=0;
+                    window.parent.countPrice=0;
                 },
-                error:function () {
-                    alert("下单失败")
+                error:function (result) {
+                    alert("下单失败");
+                    window.parent.shop=[];
+                    window.parent.countCommodity=0;
+                    window.parent.countPrice=0;
                 }
             })
-            window.location.href="order.html";
-            window.parent.shop=[];
+
         });
     });
 

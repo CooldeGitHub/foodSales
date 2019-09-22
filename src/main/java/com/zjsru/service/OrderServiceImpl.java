@@ -2,6 +2,7 @@ package com.zjsru.service;
 
 import java.util.List;
 
+import com.zjsru.bean.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,9 @@ public class OrderServiceImpl implements OrderService {
 	private OrderDao orderDao;
 
 	@Override
-	public void addOrder(Order order) {
+	public int addOrder(Order order) {
 		// TODO Auto-generated method stub
-		orderDao.insertOrder(order);
+		return orderDao.insertOrder(order);
 	}
 
 	@Override
@@ -37,6 +38,11 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		List<Order> orders = orderDao.selectAllOrder();
 		return orders;
+	}
+
+	@Override
+	public void addShopCart(ShoppingCart shoppingCart) {
+		orderDao.insertShopCart(shoppingCart);
 	}
 
 }
