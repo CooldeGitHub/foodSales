@@ -27,31 +27,6 @@ h1 {
 </style>
 </head>
 <body>
-	<!-- <h1>用户信息</h1>
-	<form action="../jsp/finduser.html" method="post">
-		<div style="padding: 20px;"></div>
-		<table>
-			<tr>
-				<td>用户id:</td>
-				<td><input type="text" name="uid" value="${user.uid}" /></td>
-			</tr>
-			<tr>
-				<td>用户姓名:</td>
-				<td><input type="text" name="uname" value="${user.uname}" /></td>
-			</tr>
-			<tr>
-				<td>登录密码:</td>
-				<td><input type="text" name="password" value="${user.password}" /></td>
-			</tr>
-			<tr>
-				<td>用户等级:</td>
-				<td><input type="text" name="grade" value="${user.grade}" /></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" name="btn" value="返回" /></td>
-			</tr>
-		</table>
-	</form> -->
 
 	<div class="wrapper wrapper-content  animated fadeInRight">
 		<div class="row">
@@ -88,25 +63,23 @@ h1 {
 			$.ajax({
 				async : true, //表示请求是否异步处理
 				type : "get", //请求类型
-				url : "/foodSales/user/findByUid",//请求的 URL地址
+				url : "../user/findByUid?uid="+window.parent.uid,//请求的 URL地址
 				dataType : "json",//返回的数据类型
 				success : function(data) {
 					console.log(data); //在控制台打印服务器端返回的数据
-					for (var i = 0; i < data.length; i++) {
 						var html = "";
 						html = '<td><a data-toggle="tab" href="#contact-3" class="client-link">'
-								+ data[i].uid
+								+ data.uid
 								+ '</a></td><td>'
-								+ data[i].uname
+								+ data.uname
 								+ '</a></td><td>'
-								+ data[i].password
+								+ data.password
 								+ '</a></td><td>'
-								+ data[i].grade
+								+ data.grade
 								+ '</td><td class="contact-type"></td><td>'
-								+ '<td><a href="finduser.html" class="btn btn-sm btn-warning">返回/a></td>';
+								+ '<td><a href="finduser.html" class="btn btn-sm btn-warning">返回</td>';
 						$("#tab-1 tbody").append(
 								"<tr>" + html + "</tr>");
-					}
 				},
 				error : function(data) {
 					delete html
